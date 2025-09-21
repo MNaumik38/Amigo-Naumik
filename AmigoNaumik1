@@ -1,0 +1,59 @@
+// El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
+// Declaramos el array para almacenar los nombres
+let amigos = [];
+
+// Función para agregar un amigo
+function agregarAmigo() {
+  let input = document.getElementById("amigo");
+  let nombre = input.value.trim();
+
+  // Validar que no esté vacío
+  if (nombre === "") {
+    alert("⚠️ Por favor, ingresa un nombre válido.");
+    return;
+  }
+
+  // Guardar en el array
+  amigos.push(nombre);
+
+  // Mostrar la lista actualizada
+  mostrarLista();
+
+  // Resetear el input
+  input.value = "";
+  input.focus();
+}
+
+// Función para mostrar la lista de amigos
+function mostrarLista() {
+  let listaHtml = document.getElementById("listaAmigos");
+  listaHtml.innerHTML = ""; // limpiar antes de volver a renderizar
+
+  for (let i = 0; i < amigos.length; i++) {
+    let li = document.createElement("li");
+    li.textContent = amigos[i];
+    listaHtml.appendChild(li);
+  }
+}
+
+// Función para sortear un amigo secreto
+function sortearAmigo() {
+  // Validar que haya amigos cargados
+  if (amigos.length === 0) {
+    alert("⚠️ La lista está vacía. Agrega al menos un nombre.");
+    return;
+  }
+
+  // Generar un índice aleatorio
+  let indice = Math.floor(Math.random() * amigos.length);
+
+  // Obtener el nombre sorteado
+  let ganador = amigos[indice];
+
+  // Mostrar el resultado en la lista de resultados
+  let resultadoHtml = document.getElementById("resultado");
+  resultadoHtml.innerHTML = ""; // limpiar resultados previos
+  let li = document.createElement("li");
+  li.textContent = "🎉 El amigo secreto es: " + ganador + " 🎉";
+  resultadoHtml.appendChild(li);
+}
